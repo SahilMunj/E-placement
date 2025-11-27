@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - E-Placement Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center py-8">
+    <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-2xl">
+        <div class="text-center mb-8">
+            <i class="fas fa-user-plus text-5xl text-purple-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800">Create Account</h2>
+            <p class="text-gray-600 mt-2">Join the E-Placement Portal</p>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Register As:</label>
+            <div class="flex space-x-4">
+                <button onclick="selectRole('student')" id="studentRoleBtn" class="flex-1 py-2 px-4 border-2 border-purple-600 text-purple-600 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition">
+                    <i class="fas fa-user-graduate mr-2"></i>Student
+                </button>
+                <button onclick="selectRole('faculty')" id="facultyRoleBtn" class="flex-1 py-2 px-4 border-2 border-gray-300 text-gray-600 rounded-lg font-semibold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition">
+                    <i class="fas fa-chalkboard-teacher mr-2"></i>Faculty
+                </button>
+            </div>
+        </div>
+
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                    <input type="text" id="fullName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter full name">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter email">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                    <input type="password" id="password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter password">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Confirm password">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                    <input type="tel" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter phone number">
+                </div>
+                <div id="studentIdField">
+                    <label class="block text-gray-700 font-semibold mb-2">Student ID</label>
+                    <input type="text" id="studentId" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter student ID">
+                </div>
+                <div id="facultyIdField" class="hidden">
+                    <label class="block text-gray-700 font-semibold mb-2">Faculty ID</label>
+                    <input type="text" id="facultyId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter faculty ID">
+                </div>
+            </div>
+
+            <div id="studentFields">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Department</label>
+                        <select id="department" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Electrical">Electrical</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Year</label>
+                        <select id="year" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            <option value="">Select Year</option>
+                            <option value="1">First Year</option>
+                            <option value="2">Second Year</option>
+                            <option value="3">Third Year</option>
+                            <option value="4">Fourth Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="facultyFields" class="hidden">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Department</label>
+                    <select id="facultyDepartment" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                        <option value="">Select Department</option>
+                        <option value="Placement Cell">Placement Cell</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electrical">Electrical</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="errorMessage" class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg hidden"></div>
+            <div id="successMessage" class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg hidden"></div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                <i class="fas fa-user-plus mr-2"></i>Create Account
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Already have an account? <a href="login.html" class="text-purple-600 font-semibold hover:underline">Login here</a></p>
+            <p class="mt-2"><a href="index.html" class="text-purple-600 hover:underline">Back to Home</a></p>
+        </div>
+    </div>
+
+    <script type="module" src="js/register.js"></script>
+</body>
+</html>

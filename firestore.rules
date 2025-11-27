@@ -1,0 +1,87 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Helper function to get user role
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    
+    // Helper function to check if user is faculty
+    function isFaculty() {
+      return isSignedIn() && getUserRole() == 'faculty';
+    }
+    
+    // Helper function to check if user is student
+    function isStudent() {
+      return isSignedIn() && getUserRole() == 'student';
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Anyone authenticated can read user profiles
+      allow read: if isSignedIn();
+      
+      // Users can only create their own profile during registration
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      
+      // Users can only update their own profile
+      allow update: if isSignedIn() && request.auth.uid == userId;
+      
+      // Only the user themselves can delete their profile
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Placements collection
+    match /placements/{placementId} {
+      // Anyone authenticated can read placements
+      allow read: if isSignedIn();
+      
+      // Only faculty can create placements
+      allow create: if isFaculty();
+      
+      // Only faculty can update placements
+      allow update: if isFaculty();
+      
+      // Only faculty can delete placements
+      allow delete: if isFaculty();
+    }
+    
+    // Application forms collection
+    match /applicationForms/{formId} {
+      // Allow read if:
+      // 1. User is authenticated AND
+      // 2. Either the form belongs to the user OR user is faculty
+      allow read: if isSignedIn();
+      
+      // Allow create if user is authenticated and creating their own form
+      allow create: if isSignedIn() && request.resource.data.studentId == request.auth.uid;
+      
+      // Allow update if user owns the form or is faculty
+      allow update: if isSignedIn();
+      
+      // Allow delete if user owns the form or is faculty
+      allow delete: if isSignedIn();
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can only read their own notifications
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Faculty can create notifications
+      allow create: if isFaculty();
+      
+      // Users can update their own notifications (e.g., mark as read)
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Users can delete their own notifications
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

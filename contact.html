@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - E-Placement Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                    <span class="text-2xl font-bold">E-Placement Portal</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <button onclick="toggleDarkMode()" class="hover:text-gray-200 transition">
+                        <i class="fas fa-moon dark:hidden text-xl"></i>
+                        <i class="fas fa-sun hidden dark:inline text-xl"></i>
+                    </button>
+                    <a href="index.html" class="hover:text-gray-200 transition font-semibold">Home</a>
+                    <a href="about.html" class="hover:text-gray-200 transition font-semibold">About Us</a>
+                    <a href="contact.html" class="hover:text-gray-200 transition font-semibold">Contact</a>
+                    <a href="faq.html" class="hover:text-gray-200 transition font-semibold">FAQ</a>
+                    <a href="login.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">Contact Us</h1>
+            <p class="text-xl">We'd love to hear from you!</p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6">Send a Message</h2>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-3 border rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 border rounded-lg">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Subject</label>
+                            <input type="text" required class="w-full px-4 py-3 border rounded-lg">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea rows="5" required class="w-full px-4 py-3 border rounded-lg"></textarea>
+                        </div>
+                        <div id="formMessage" class="mb-4 hidden"></div>
+                        <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg mb-6">
+                        <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-university text-purple-600 text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold mb-1">Address</h3>
+                                    <p class="text-gray-600">ABC Engineering College<br>Mumbai, Maharashtra 400001</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-purple-600 text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold mb-1">Phone</h3>
+                                    <p class="text-gray-600">+91 22 1234 5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-purple-600 text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold mb-1">Email</h3>
+                                    <p class="text-gray-600">placements@abccollege.edu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h2 class="text-2xl font-bold mb-4">Connect With Us</h2>
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com" class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://github.com" class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://twitter.com" class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 E-Placement Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/dark-mode.js"></script>
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const msg = document.getElementById('formMessage');
+            msg.className = 'mb-4 p-3 bg-green-100 text-green-700 rounded-lg';
+            msg.textContent = 'Message sent successfully! We will get back to you soon.';
+            msg.classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>

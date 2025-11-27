@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - E-Placement Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <i class="fas fa-graduation-cap text-5xl text-purple-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800">Login</h2>
+            <p class="text-gray-600 mt-2">Access your account</p>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Login As:</label>
+            <div class="flex space-x-4">
+                <button onclick="selectRole('student')" id="studentRoleBtn" class="flex-1 py-2 px-4 border-2 border-purple-600 text-purple-600 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition">
+                    <i class="fas fa-user-graduate mr-2"></i>Student
+                </button>
+                <button onclick="selectRole('faculty')" id="facultyRoleBtn" class="flex-1 py-2 px-4 border-2 border-gray-300 text-gray-600 rounded-lg font-semibold hover:bg-purple-600 hover:text-white hover:border-purple-600 transition">
+                    <i class="fas fa-chalkboard-teacher mr-2"></i>Faculty
+                </button>
+            </div>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="mb-4">
+                <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                <input type="email" id="loginEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter your email">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                <input type="password" id="loginPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter your password">
+            </div>
+
+            <div id="errorMessage" class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg hidden"></div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">Don't have an account? <a href="register.html" class="text-purple-600 font-semibold hover:underline">Register here</a></p>
+            <p class="mt-2"><a href="index.html" class="text-purple-600 hover:underline">Back to Home</a></p>
+        </div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

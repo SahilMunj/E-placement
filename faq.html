@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - E-Placement Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                    <span class="text-2xl font-bold">E-Placement Portal</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <button onclick="toggleDarkMode()" class="hover:text-gray-200 transition">
+                        <i class="fas fa-moon dark:hidden text-xl"></i>
+                        <i class="fas fa-sun hidden dark:inline text-xl"></i>
+                    </button>
+                    <a href="index.html" class="hover:text-gray-200 transition font-semibold">Home</a>
+                    <a href="about.html" class="hover:text-gray-200 transition font-semibold">About Us</a>
+                    <a href="contact.html" class="hover:text-gray-200 transition font-semibold">Contact</a>
+                    <a href="faq.html" class="hover:text-gray-200 transition font-semibold">FAQ</a>
+                    <a href="login.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+            <p class="text-xl">Find answers to common questions</p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How do I register on the platform?</span>
+                        <i class="fas fa-chevron-down" id="icon-1"></i>
+                    </button>
+                    <div id="faq-1" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Click on the "Register" button on the homepage. Choose whether you're a student or faculty member, fill in your details, and submit the form. You'll receive a confirmation email once your account is created.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How can I apply for placement opportunities?</span>
+                        <i class="fas fa-chevron-down" id="icon-2"></i>
+                    </button>
+                    <div id="faq-2" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">After logging in, navigate to the "Placements" section in your dashboard. Browse available opportunities and click "Apply Now" on any placement that matches your profile. Fill out the application form to complete your submission.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How do I use the resume generator?</span>
+                        <i class="fas fa-chevron-down" id="icon-3"></i>
+                    </button>
+                    <div id="faq-3" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Go to the "Resume Generator" section, fill in your details including SSC, HSC, and B.E. information, skills, and experience. Click "Generate Preview" to see your resume, then download it as a PDF.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How do I track my application status?</span>
+                        <i class="fas fa-chevron-down" id="icon-4"></i>
+                    </button>
+                    <div id="faq-4" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Visit the "Application Status" section in your student dashboard to see all your submitted applications, their current status, and any feedback from the placement team.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(5)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How do I update my resume?</span>
+                        <i class="fas fa-chevron-down" id="icon-5"></i>
+                    </button>
+                    <div id="faq-5" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">In the "Profile" section, you can upload a new resume PDF. The system will automatically replace your old resume with the new one in Firebase Storage.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(6)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>Will I get notifications for new placements?</span>
+                        <i class="fas fa-chevron-down" id="icon-6"></i>
+                    </button>
+                    <div id="faq-6" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Yes! You'll receive email notifications when new placement opportunities matching your department are posted by the placement cell.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(7)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>What if I forget my password?</span>
+                        <i class="fas fa-chevron-down" id="icon-7"></i>
+                    </button>
+                    <div id="faq-7" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Click on "Forgot Password" on the login page. Enter your registered email address, and you'll receive instructions to reset your password.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(8)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>Can faculty members view student resumes?</span>
+                        <i class="fas fa-chevron-down" id="icon-8"></i>
+                    </button>
+                    <div id="faq-8" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">Yes, faculty members can view all registered student profiles, including their resumes and application history, in the "Manage Students" section.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(9)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>How secure is my data?</span>
+                        <i class="fas fa-chevron-down" id="icon-9"></i>
+                    </button>
+                    <div id="faq-9" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">We use Firebase for backend services, which provides enterprise-grade security. All data is encrypted and protected with role-based access controls.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(10)" class="w-full text-left p-6 font-bold text-lg hover:bg-gray-50 flex justify-between items-center">
+                        <span>Who do I contact for technical support?</span>
+                        <i class="fas fa-chevron-down" id="icon-10"></i>
+                    </button>
+                    <div id="faq-10" class="hidden p-6 border-t bg-gray-50">
+                        <p class="text-gray-600">For technical issues, please contact the placement office at placements@abccollege.edu or visit the Contact Us page to submit a support request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Still Have Questions?</h2>
+            <p class="text-gray-600 mb-6">Can't find the answer you're looking for? Feel free to reach out!</p>
+            <a href="contact.html" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-purple-700 inline-block">
+                Contact Us
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 E-Placement Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/dark-mode.js"></script>
+    <script>
+        function toggleFaq(id) {
+            const content = document.getElementById(`faq-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            content.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+    </script>
+</body>
+</html>

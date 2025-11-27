@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - E-Placement Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .sidebar-active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Top Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-chalkboard-teacher text-2xl"></i>
+                    <span class="text-xl font-bold">E-Placement Portal - Faculty</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="facultyName" class="font-semibold"></span>
+                    <button onclick="logout()" class="bg-white text-purple-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="gradient-bg text-white w-64 min-h-screen p-6">
+            <div class="space-y-2">
+                <a href="#" onclick="showSection('profile')" id="nav-profile" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition sidebar-active">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" onclick="showSection('post-placement')" id="nav-post-placement" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Post Placement</span>
+                </a>
+                <a href="#" onclick="showSection('manage-posts')" id="nav-manage-posts" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-tasks"></i>
+                    <span>Manage Posts</span>
+                </a>
+                <a href="#" onclick="showSection('manage-students')" id="nav-manage-students" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Students</span>
+                </a>
+                <a href="#" onclick="showSection('manage-forms')" id="nav-manage-forms" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Manage Forms</span>
+                </a>
+                <a href="#" onclick="showSection('update-profile')" id="nav-update-profile" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition">
+                    <i class="fas fa-edit"></i>
+                    <span>Update Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <!-- Profile Section -->
+            <div id="profile-section" class="section">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">My Profile</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center space-x-6 mb-6">
+                        <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
+                            <span id="profileInitials"></span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800" id="profileName"></h3>
+                            <p class="text-gray-600" id="profileEmail"></p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-600 font-semibold mb-1">Faculty ID</label>
+                            <p class="text-gray-800" id="profileFacultyId"></p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600 font-semibold mb-1">Phone</label>
+                            <p class="text-gray-800" id="profilePhone"></p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-600 font-semibold mb-1">Department</label>
+                            <p class="text-gray-800" id="profileDepartment"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post Placement Section -->
+            <div id="post-placement-section" class="section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Post New Placement</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <form id="postPlacementForm" onsubmit="postPlacement(event)">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Company Name</label>
+                                <input type="text" id="companyName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Job Role</label>
+                                <input type="text" id="jobRole" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Package (LPA)</label>
+                                <input type="text" id="package" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Location</label>
+                                <input type="text" id="location" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Application Deadline</label>
+                                <input type="datetime-local" id="deadline" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Eligible Departments</label>
+                                <select id="eligibleDepartments" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="Electrical">Electrical</option>
+                                    <option value="All">All Departments</option>
+                                </select>
+                                <p class="text-sm text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Job Description</label>
+                            <textarea id="jobDescription" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Requirements</label>
+                            <textarea id="requirements" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Application Link</label>
+                            <input type="url" id="applicationLink" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div id="postMessage" class="mb-4 p-3 rounded-lg hidden"></div>
+                        <button type="submit" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                            <i class="fas fa-paper-plane mr-2"></i>Post Placement
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Manage Posts Section -->
+            <div id="manage-posts-section" class="section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Manage Placement Posts</h2>
+                <div id="postsList" class="space-y-4">
+                    <!-- Posts will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Manage Students Section -->
+            <div id="manage-students-section" class="section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Manage Students</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4">
+                        <input type="text" id="studentSearch" placeholder="Search students..." class="w-full px-4 py-2 border border-gray-300 rounded-lg" onkeyup="searchStudents()">
+                    </div>
+                    <div id="studentsList" class="space-y-4">
+                        <!-- Students will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Forms Section -->
+            <div id="manage-forms-section" class="section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Manage Application Forms</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 flex space-x-4">
+                        <input type="text" id="formSearch" placeholder="Search by student or company..." class="flex-1 px-4 py-2 border border-gray-300 rounded-lg" onkeyup="searchForms()">
+                        <select id="companyFilter" class="px-4 py-2 border border-gray-300 rounded-lg" onchange="filterForms()">
+                            <option value="">All Companies</option>
+                        </select>
+                    </div>
+                    <div id="applicationFormsList" class="space-y-4">
+                        <!-- Application forms will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Profile Section -->
+            <div id="update-profile-section" class="section hidden">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">Update Profile</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <form id="updateProfileForm" onsubmit="updateProfile(event)">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                                <input type="text" id="updateName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Phone</label>
+                                <input type="tel" id="updatePhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">Department</label>
+                            <select id="updateDepartment" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                                <option value="Placement Cell">Placement Cell</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Electrical">Electrical</option>
+                            </select>
+                        </div>
+                        <div id="updateMessage" class="mb-4 p-3 rounded-lg hidden"></div>
+                        <button type="submit" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                            <i class="fas fa-save mr-2"></i>Update Profile
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Student Profile Modal -->
+    <div id="studentProfileModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg p-8 max-w-4xl w-full mx-4 my-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Student Profile</h3>
+                <button onclick="closeStudentModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div id="studentProfileContent">
+                <!-- Student profile will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Placement Modal -->
+    <div id="editPlacementModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4 my-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Edit Placement</h3>
+                <button onclick="closeEditModal()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form id="editPlacementForm" onsubmit="updatePlacement(event)">
+                <input type="hidden" id="editPlacementId">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Company Name</label>
+                        <input type="text" id="editCompanyName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Job Role</label>
+                        <input type="text" id="editJobRole" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Package (LPA)</label>
+                        <input type="text" id="editPackage" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Location</label>
+                        <input type="text" id="editLocation" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Application Deadline</label>
+                    <input type="datetime-local" id="editDeadline" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Job Description</label>
+                    <textarea id="editJobDescription" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Application Link</label>
+                    <input type="url" id="editApplicationLink" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeEditModal()" class="flex-1 bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition">Cancel</button>
+                    <button type="submit" class="flex-1 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- EmailJS for sending email notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="module" src="js/faculty-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Placement Portal - College Placement Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-bg-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .gradient-bg-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .hero-image {
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80') center/cover;
+            position: relative;
+        }
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+        }
+        .ai-generated-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-gray-900">
+    <!-- Enhanced Navigation -->
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 hover:opacity-80 transition">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                    <span class="text-2xl font-bold">E-Placement Portal</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <button onclick="toggleDarkMode()" class="hover:text-gray-200 transition" title="Toggle Dark Mode">
+                        <i class="fas fa-moon dark:hidden text-xl"></i>
+                        <i class="fas fa-sun hidden dark:inline text-xl"></i>
+                    </button>
+                    <a href="index.html" class="hover:text-gray-200 transition font-semibold">Home</a>
+                    <a href="about.html" class="hover:text-gray-200 transition font-semibold">About Us</a>
+                    <a href="contact.html" class="hover:text-gray-200 transition font-semibold">Contact</a>
+                    <a href="faq.html" class="hover:text-gray-200 transition font-semibold">FAQ</a>
+                    <a href="login.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">Login</a>
+                </div>
+                <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 space-y-2">
+                <a href="index.html" class="block py-2 hover:text-gray-200 transition">Home</a>
+                <a href="about.html" class="block py-2 hover:text-gray-200 transition">About Us</a>
+                <a href="contact.html" class="block py-2 hover:text-gray-200 transition">Contact</a>
+                <a href="faq.html" class="block py-2 hover:text-gray-200 transition">FAQ</a>
+                <a href="login.html" class="block py-2 hover:text-gray-200 transition">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section with AI-Generated Image -->
+    <section class="hero-image text-white py-32 relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-6xl font-bold mb-6 animate-fade-in">Welcome to E-Placement Portal</h1>
+            <p class="text-2xl mb-4">Empowering Students, Connecting Careers</p>
+            <p class="text-lg mb-10 max-w-2xl mx-auto">Your comprehensive solution for campus placement management. Streamline applications, track opportunities, and build your future.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="register.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg transform hover:scale-105">
+                    <i class="fas fa-user-graduate mr-2"></i>Student Registration
+                </a>
+                <a href="register.html" class="bg-purple-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-900 transition shadow-lg transform hover:scale-105">
+                    <i class="fas fa-chalkboard-teacher mr-2"></i>Faculty Registration
+                </a>
+                <a href="login.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition shadow-lg transform hover:scale-105">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="card-hover">
+                    <div class="text-5xl font-bold text-purple-600 dark:text-purple-400 mb-2">500+</div>
+                    <p class="text-gray-600 dark:text-gray-300 font-semibold">Registered Students</p>
+                </div>
+                <div class="card-hover p-6">
+                    <div class="text-5xl font-bold text-purple-600 dark:text-purple-400 mb-2">150+</div>
+                    <p class="text-gray-600 dark:text-gray-300 font-semibold">Partner Companies</p>
+                </div>
+                <div class="card-hover p-6">
+                    <div class="text-5xl font-bold text-purple-600 dark:text-purple-400 mb-2">95%</div>
+                    <p class="text-gray-600 dark:text-gray-300 font-semibold">Placement Rate</p>
+                </div>
+                <div class="card-hover p-6">
+                    <div class="text-5xl font-bold text-purple-600 dark:text-purple-400 mb-2">12 LPA</div>
+                    <p class="text-gray-600 dark:text-gray-300 font-semibold">Average Package</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section with AI-Generated Images -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Platform Features</h2>
+                <p class="text-gray-600 dark:text-gray-300">Everything you need for successful campus placements</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-file-alt text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Resume Generator</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Create professional resumes with our easy-to-use template. Add your SSC, HSC, and B.E. details and download as PDF instantly.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-pink-400 to-red-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Placement Opportunities</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Access the latest placement drives from top companies and apply directly through our streamlined portal.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bell text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Email Notifications</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Get instant email notifications for new placement opportunities matching your profile.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-users text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Student Management</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Faculty can efficiently manage student profiles, view resumes, and track placement applications.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-edit text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Application Tracking</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Submit and track your placement applications with real-time status updates and faculty feedback.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl card-hover">
+                    <div class="mb-6 h-48 bg-gradient-to-br from-indigo-400 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Analytics Dashboard</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Comprehensive analytics to track placement statistics and monitor student performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of students who have successfully launched their careers through our platform.</p>
+            <a href="register.html" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg inline-block transform hover:scale-105">
+                Get Started Now <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-graduation-cap mr-2"></i>E-Placement Portal
+                    </h3>
+                    <p class="text-gray-400 mb-4">Empowering students and streamlining campus placements for educational institutions.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="text-gray-400 hover:text-white transition text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-home mr-2"></i>Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-info-circle mr-2"></i>About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-envelope mr-2"></i>Contact Us</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-question-circle mr-2"></i>FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- For Students Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">For Students</h3>
+                    <ul class="space-y-2">
+                        <li><a href="register.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-user-plus mr-2"></i>Register</a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-sign-in-alt mr-2"></i>Login</a></li>
+                        <li><a href="student-dashboard.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-university mt-1 mr-3"></i>
+                            <span>ABC Engineering College<br>Mumbai, Maharashtra 400001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <span>+91 22 1234 5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>placements@abccollege.edu</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe mr-3"></i>
+                            <span>www.abccollege.edu</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 E-Placement Portal - ABC Engineering College. All rights reserved.</p>
+                <p class="mt-2 text-sm">Designed & Developed with <i class="fas fa-heart text-red-500"></i> for Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+        
+        // Check for saved dark mode preference on page load
+        (function() {
+            const darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</body>
+</html>
