@@ -1,6 +1,11 @@
 # E-Placement Portal
 
 A comprehensive web application for managing college placement activities, built with HTML, TailwindCSS, JavaScript, and Firebase.
+  <p align="center">
+  <a href="https://benevolent-chebakia-c10d0f.netlify.app/" target="_blank">
+    <img src="image.png" alt="Chat App Preview" width="700px" style="border-radius:10px; border:1px solid #ccc;" />
+  </a>
+</p>
 
 ## Features
 
